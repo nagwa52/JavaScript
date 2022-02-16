@@ -1,0 +1,109 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        padding: 20px;
+      }
+      button {
+        margin-top: 20px;
+        line-height: 60px;
+        font-weight: bold;
+        padding: 0 40px;
+        background: salmon;
+        border: none;
+      }
+      button:hover {
+        background: lightsalmon;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      class shape {
+        constructor(X, Y) {
+          this.X = X;
+          this.Y = Y;
+        }
+        displayArea() {}
+        GetCircumference() {}
+        log = () =>
+          console.log(
+            `Circumference is ${this.GetCircumference()} ,Area is ${this.displayArea()} ,Type is :${
+              this.constructor.name
+            } `
+          );
+        displayEditor() {
+          let newInput = document.createElement("input");
+          var buttonArea = document.createElement("button");
+          button.innerHTML = "getArea";
+          var buttonCir = document.createElement("button");
+          button.innerHTML = "getCircumference";
+          let newElement = document.createElement("div");
+          var body = document.getElementsByTagName("body")[0];
+          body.appendChild(buttonArea);
+        }
+      }
+      class Rectangle extends shape {
+        constructor(X, Y, Width, Height) {
+          super(X, Y);
+          this.Height = Height;
+          this.Width = Width;
+        }
+
+        GetCircumference = () => (this.Height + this.Width) * 2;
+
+        displayArea = () => this.Height * this.Width;
+      }
+      class Square extends Rectangle {
+        constructor(X, Y, Length) {
+          super(X, Y, Length, Length);
+          this.Length = Length;
+        }
+        GetCircumference = () => this.Length * 4;
+
+        displayArea = () => this.Length * this.Length;
+      }
+      class Oval extends shape {
+        constructor(X, Y, A, B) {
+          super(X, Y);
+          this.A = A;
+          this.B = B;
+        }
+        GetCircumference = () => this.A * 2 * Math.PI;
+
+        displayArea = () => this.A * this.B * Math.PI;
+      }
+      class Circle extends Oval {
+        constructor(X, Y, radius) {
+          super(X, Y, radius, radius);
+          this.radius = radius;
+        }
+      }
+      class Drawshapes {
+        shapes = [];
+        add(shape) {
+          this.shapes.push(shape);
+        }
+        log() {
+          for (let i = 0; i < this.shapes.length; i++) {
+            this.shapes[i].log();
+          }
+        }
+      }
+      let sh = new Drawshapes();
+      let rect1 = new Rectangle(0, 0, 3, 4);
+      sh.add(rect1);
+      let sq1 = new Square(0, 0, 5);
+      sh.add(sq1);
+      let ov1 = new Oval(0, 0, 10, 5);
+      sh.add(ov1);
+      let cir1 = new Circle(0, 0, 5);
+      sh.add(cir1);
+      sh.log();
+    </script>
+  </body>
+</html>
